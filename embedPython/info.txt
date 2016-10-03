@@ -1,0 +1,8 @@
+Name:		embedPython
+Brief:		Microservices for embedding python interpreter
+Description:	Microservices for embedding python interpreter. Microservices can then be written in python
+Dependencies: 
+Enabled:	yes
+Creator:	Jérôme Fuselier, University of Liverpool, United Kingdom
+Created:	February 2009
+License:	GPL

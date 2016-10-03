@@ -1,0 +1,3 @@
+test6||msiPyInitialize##msiRodsPython5(*pyScript, *methName, noRecursionTest, 10, 20, 50, 70, *res)##msiPyFinalize|nop
+*pyScript=/tempZone/home/rods/microservices/microservices.py%*methName=test_python5
+*res

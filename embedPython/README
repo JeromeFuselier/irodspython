@@ -1,0 +1,98 @@
+         How to use and install the embedPython module :
+
+REQUIREMENTS:
+=============
+
+This module requires the Python-devel package, it has been tested with the 2.7 
+version of the interpreter.
+
+http://www.python.org
+
+The module needs the PyRods Api which wraps the C Api of the iRods server. It is 
+possible to remove this dependency if you parse the msParam_t parameters in the 
+C microservice and pass the string or integer parameter when you call the 
+Python method. It needs the Pyrods 3.0.0 version.
+
+http://code.google.com/p/irodspython/
+  
+
+INSTALLATION:
+=============
+
+- Expand the package in the modules directory of the iRODS installation
+
+- Adapt the Makefile to match your current directories and paths for the different
+  libraries and object files. 
+  
+- Enable the microservice with the 'enabled' parameter in the info.txt file. You
+  can also have to do a `./scripts/configure --enable-embedPython` in the iRODS
+  root directory.
+
+- Run `make` in the iRODS root directory and hopefully you will only have warnings
+  and no errors.
+  
+- You will have to rebuild PyRods as object files are statically linked. (You will
+  have to remove irods.so if you want to force the linking step)
+  
+USAGE:
+======
+
+- In the test directory of the module there are a set of test files that can be 
+  used to check that the installation is working.
+  
+- the *.ir files have to be called with the `irule -vF test*.ir` command, the 
+  results are either on the command line output or with local webmail (check the
+  python code)
+  
+* The rule workflows have to begin with the msiPyInitialize microservice and end
+  with the msiPyFinalize microservice. The interpreter is common between each
+  steps meaning that you can pass parameters between steps via the global dict.
+  
+- All files call methods which are present in the process.py file, the path of
+  the script is given as the first parameter of the microservice, the second
+  parameter is the method name, the third one is the rule name. The remaining 
+  parameters are the actual parameters of the python method.
+  
+- The naming convention for the different available microservices (msiLocal, 
+  msiLocal1, msiRods1, ...) reflects the number of parameters in the python 
+  scripts.
+  
+- The embedLocal* microservives takes as parameter a path of the script in the
+  local filesystem of the server;
+  
+- The embedRods*  microservives takes as parameter a path of the script in iRODS
+  
+- The last parameter of the python script (not counted in the naming convention)
+  corresponds to the ruleExecInfo_t parameter of microservices.    
+  
+- The parameters can be casted to strings or int with these calls : 
+     * param.parseForPosInt()
+     * param.parseForStr()
+     
+- The output parameters are returned with these calls :
+     * fillIntInMsParam(param, 10)
+     * fillStrInMsParam(param, "output")
+     
+- The msiExecPython microservice execute a python string code. It can be used 
+  for instance to define variables or functions in the interpreter.
+  
+  
+ISSUES :
+========
+
+- If you get USER_FILE_DOES_NOT_EXIST error, this should probably means that
+  the module was not able to load the script which contains microservices. It's
+  probably that the path to your python script does not exist or that there is 
+  a syntax error (like indent problem).
+  
+- If you get NO_MICROSERVICE_FOUND_ERR error, this means that the module was not
+  able to find the python microservice in the script you selected. Check the
+  function name of the call (the second parameter in msiLocalPython...)
+  
+- If you get INVALID_OBJECT_TYPE error, this means that the CallFunction of the
+  C Api failed. This happens for instance if the syntax of the python microservice
+  is wrong or if you use undefined variables. The traceback should be printed
+  in the rodsLog logfile with more precise information.
+  
+
+ 

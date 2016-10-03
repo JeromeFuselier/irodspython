@@ -1,0 +1,27 @@
+/* Properties module microservices */
+/* Service name			# args		Service function */
+
+{ "msiRodsPython",		3,		(funcPtr) msiRodsPython },
+{ "msiRodsPython1",		4,		(funcPtr) msiRodsPython1 },
+{ "msiRodsPython2",		5,		(funcPtr) msiRodsPython2 },
+{ "msiRodsPython3",		6,		(funcPtr) msiRodsPython3 },
+{ "msiRodsPython4",		7,		(funcPtr) msiRodsPython4 },
+{ "msiRodsPython5",		8,		(funcPtr) msiRodsPython5 },
+{ "msiRodsPython6",		9,		(funcPtr) msiRodsPython6 },
+{ "msiRodsPython7",		10,		(funcPtr) msiRodsPython7 },
+
+{ "msiLocalPython",		3,		(funcPtr) msiLocalPython },
+{ "msiLocalPython1",	4,		(funcPtr) msiLocalPython1 },
+{ "msiLocalPython2",	5,		(funcPtr) msiLocalPython2 },
+{ "msiLocalPython3",	6,		(funcPtr) msiLocalPython3 },
+{ "msiLocalPython4",	7,		(funcPtr) msiLocalPython4 },
+{ "msiLocalPython5",	8,		(funcPtr) msiLocalPython5 },
+{ "msiLocalPython6",	9,		(funcPtr) msiLocalPython6 },
+{ "msiLocalPython7",	10,		(funcPtr) msiLocalPython7 },
+
+{ "msiExecPython",		1,		(funcPtr) msiExecPython },
+
+{ "msiPyInitialize",	0,		(funcPtr) msiPyInitialize },
+{ "msiPyFinalize",		0,		(funcPtr) msiPyFinalize },
+
+{ "msiImportPythonZip",	1,		(funcPtr) msiImportPythonZip },

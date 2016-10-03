@@ -1,0 +1,3 @@
+test||msiPyInitialize##msiExecPython(print 'toto')##msiPyFinalize|nop
+null
+ruleExecOut
